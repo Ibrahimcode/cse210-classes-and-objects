@@ -29,7 +29,7 @@ class Journal
         this._entryDatum = new List<EntryData>();
         foreach (Entry entry in this._entries)
         {
-            _entryDatum.Add(entry.entryData);
+            _entryDatum.Add(entry._entryData);
         }
 
         using (StreamWriter journalFile = new StreamWriter(file))
