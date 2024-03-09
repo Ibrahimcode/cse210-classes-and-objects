@@ -1,5 +1,8 @@
 class EntryData
 {
+    /***
+    * A data model to be save in a file.
+    */
     public string date {get; set;}
     public string promptText {get; set;}
     public string entryText {get; set; }
@@ -8,18 +11,18 @@ class EntryData
 class Entry
 {
     // Holds the data enter by the user.
-    public EntryData entryData = new EntryData(); 
+    public EntryData _entryData = new EntryData(); 
 
     public Entry(EntryData entryData)
     {
-        this.entryData = entryData;
+        this._entryData = entryData;
     }
 
     // Display a single entry.
     public void Display()
     {
-        Console.WriteLine($"Date: {this.entryData.date} - Prompt: {this.entryData.promptText}");
-        Console.WriteLine($"{this.entryData.entryText}");
+        Console.WriteLine($"Date: {this._entryData.date} - Prompt: {this._entryData.promptText}");
+        Console.WriteLine($"{this._entryData.entryText}");
         Console.WriteLine();
     }
 }
