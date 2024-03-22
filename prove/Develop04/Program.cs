@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop04 World!");
+        BreathActivity breathActivity = new BreathActivity(
+            "Breath", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
+        breathActivity.Run();
     }
 }
