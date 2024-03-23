@@ -2,6 +2,7 @@ class ReflectingActivity : Activity
 {
     private List<string> _prompts;
     private List<string> _questions;
+    private List<int> _questionsIndex;
     
     public ReflectingActivity(string name, string description) : base(name, description){
         this._prompts = [
@@ -22,6 +23,11 @@ class ReflectingActivity : Activity
             "What did you learn about yourself through this experience?",
             "How can you keep this experience in mind in the future?"
         ];
+        this._questionsIndex = new List<int>();
+        for (int index = 0; index < _questions.Count; index++)
+        {
+            this._questionsIndex.Add(index);
+        }
     }
 
     private string GetRandomPrompt(){
@@ -35,9 +41,23 @@ class ReflectingActivity : Activity
     private string GetRandomQuestion(){
         Random randomNumber = new Random();
 
-        int randomQuestionIndex = randomNumber.Next(this._questions.Count);
+        // Randomly select a question onces (Don't repeat a question)
+        // Until all questions have been asked at least once in a session.
+        if (this._questionsIndex.Count == 0)
+        {
+            for (int index = 0; index < _questions.Count; index++)
+            {
+                this._questionsIndex.Add(index);
+            }
+        }
+        int randomQuestionIndex = randomNumber.Next(this._questionsIndex.Count);
 
-        return this._questions[randomQuestionIndex];
+
+        string question = this._questions[this._questionsIndex[randomQuestionIndex]];
+
+        this._questionsIndex.RemoveAt(randomQuestionIndex);
+
+        return question;
     }
 
     private void DisplayPrompt(){
