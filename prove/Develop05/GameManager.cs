@@ -4,6 +4,7 @@ class GameManager
     public int  _score;
 
     public GameManager(){
+        this._goals = new List<Goal>();
         this._score = 0;
     }
 
