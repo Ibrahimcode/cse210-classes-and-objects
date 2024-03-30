@@ -8,6 +8,43 @@ class GameManager
         this._score = 0;
     }
 
+    public void Start(){
+        string menuOption;
+        bool quit = false;
+
+        while (!quit)
+        {
+            Console.WriteLine("Menu Options:");
+            Console.WriteLine("  1. Create New Goal");
+            Console.WriteLine("  2. List Goals");
+            Console.WriteLine("  3. Save Goals");
+            Console.WriteLine("  4. Load Goals");
+            Console.WriteLine("  5. Record Event");
+            Console.WriteLine("  6. Quit");
+            Console.Write("Select a choice from the menu: ");
+            menuOption =  Console.ReadLine();
+
+            switch (menuOption)
+            {
+                case "1":
+                    this.CreateGoal();
+                    break;
+                case "2":
+                    this.ListGoalNames();
+                    break;
+                case "5":
+                    this.RecordEvent();
+                    break;
+                case "6":
+                    quit = true;
+                    break;
+                default:
+                    quit = true;
+                    break;
+            }
+        }
+    }
+
     public void DisplayPlayerInfo(){
         Console.WriteLine($"You now have {this._score} points");
     }
