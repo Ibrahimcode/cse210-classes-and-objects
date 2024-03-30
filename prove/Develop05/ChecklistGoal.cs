@@ -20,7 +20,7 @@ class ChecklistGoal : Goal
         }
     }
 
-    protected override bool IsCompleted()
+    public override bool IsCompleted()
     {
         return this._target == this._amountCompleted;
     }
@@ -28,9 +28,9 @@ class ChecklistGoal : Goal
     public override string GetStringDetails(){
         if (IsCompleted())
         {
-            return $"[X] {this._shortName} ({this._description}) -- Currently completed {this._accumulatedPoints}/{this._target}";
+            return $"[X] {this._shortName} ({this._description}) -- Currently completed {this._amountCompleted}/{this._target}";
         }
-        return $"[ ] {this._shortName} ({this._description}) -- Currently completed {this._accumulatedPoints}/{this._target}";
+        return $"[ ] {this._shortName} ({this._description}) -- Currently completed {this._amountCompleted}/{this._target}";
     }
 
     public override GoalData GetGoalData()

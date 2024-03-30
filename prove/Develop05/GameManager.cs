@@ -30,7 +30,7 @@ class GameManager
                     this.CreateGoal();
                     break;
                 case "2":
-                    this.ListGoalNames();
+                    this.ListGoalDetails();
                     break;
                 case "5":
                     this.RecordEvent();
@@ -42,6 +42,9 @@ class GameManager
                     quit = true;
                     break;
             }
+            Console.WriteLine();
+            Console.WriteLine($"You have {this._score} points");
+            Console.WriteLine();
         }
     }
 
@@ -54,7 +57,7 @@ class GameManager
         Console.WriteLine("The goals are:");
         foreach (Goal goal in this._goals)
         {
-            Console.WriteLine($"{goalIndex}. {goal.GetGoalData().shortName}");
+            Console.WriteLine($"  {goalIndex}. {goal.GetGoalData().shortName}");
             goalIndex++;
         }
     }
@@ -64,7 +67,7 @@ class GameManager
         Console.WriteLine("The goals are:");
         foreach (Goal goal in this._goals)
         {
-            Console.WriteLine($"{goalIndex}. {goal.GetStringDetails()}");
+            Console.WriteLine($"  {goalIndex}. {goal.GetStringDetails()}");
             goalIndex++;
         }
     }
@@ -80,10 +83,10 @@ class GameManager
         Console.Write("What is the name of your goal? ");
         string goalName = Console.ReadLine();
         Console.WriteLine();
-        Console.WriteLine("What is a short description of it? ");
+        Console.Write("What is a short description of it? ");
         string goalDescription = Console.ReadLine();
         Console.WriteLine();
-        Console.WriteLine("What is the amount of points associated with this goal? ");
+        Console.Write("What is the amount of points associated with this goal? ");
         int amountOfPoints = int.Parse(Console.ReadLine());
 
         switch (userCreateGoal)
@@ -95,10 +98,10 @@ class GameManager
                 this._goals.Add( new EternalGoal(goalName, goalDescription, amountOfPoints));
                 break;
             case "3":
-                Console.WriteLine("How many times does this goal need to be accomplished for a bonus?");
+                Console.Write("How many times does this goal need to be accomplished for a bonus? ");
                 int target = int.Parse(Console.ReadLine());
                 Console.WriteLine();
-                Console.WriteLine("What is the bonus for accomplishing it that many times? ");
+                Console.Write("What is the bonus for accomplishing it that many times? ");
                 int bonus = int.Parse(Console.ReadLine());
                 this._goals.Add( new ChecklistGoal(goalName, goalDescription, amountOfPoints, target, bonus));
                 break;
@@ -121,6 +124,13 @@ class GameManager
             GoalData goalData = this._goals[goalIndex].GetGoalData();
 
             this._score += goalData.pointsValue;
+
+            // Check to add bonus for Checklist goal.
+            if (goalData.goalType == "Checklist" && this._goals[goalIndex].IsCompleted())
+            {
+                ChecklistGoalData checklistGoalData = (ChecklistGoalData)goalData;
+                this._score += checklistGoalData.bonus;
+            }
 
             Console.WriteLine($"Congratulations! you have earned {goalData.pointsValue} points!");
             this.DisplayPlayerInfo();

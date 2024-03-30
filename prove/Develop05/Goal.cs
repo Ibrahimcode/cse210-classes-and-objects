@@ -18,7 +18,7 @@ class Goal
         return;
     }
 
-    protected virtual bool IsCompleted(){
+    public virtual bool IsCompleted(){
         return false;
     }
 

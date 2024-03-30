@@ -18,7 +18,7 @@ class SimpleGoal : Goal
         
     }
 
-    protected override bool IsCompleted()
+    public override bool IsCompleted()
     {
         return this._isComplete;
     }
