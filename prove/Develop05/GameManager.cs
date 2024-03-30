@@ -8,7 +8,7 @@ class GameManager
     }
 
     public void DisplayPlayerInfo(){
-        Console.WriteLine($"Your total current score is: {this._score}");
+        Console.WriteLine($"You now have {this._score} points");
     }
 
     public void ListGoalNames(){
@@ -84,7 +84,7 @@ class GameManager
 
             this._score += goalData.pointsValue;
 
-            Console.WriteLine($"Congratulations! you have earned {goalData.pointsValue} points");
+            Console.WriteLine($"Congratulations! you have earned {goalData.pointsValue} points!");
             this.DisplayPlayerInfo();
 
         }
