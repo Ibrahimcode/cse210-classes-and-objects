@@ -1,10 +1,10 @@
-class ChechlistGoal : Goal
+class ChecklistGoal : Goal
 {
     protected int _amountCompleted;
     protected int _target;
     protected int _bonus;
 
-    public ChechlistGoal(
+    public ChecklistGoal(
         string shortName, string description, int pointsValue, int target, int bonus
     ) : base(shortName, description, pointsValue){
         this._target = target;
