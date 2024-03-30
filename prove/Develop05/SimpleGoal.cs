@@ -25,7 +25,7 @@ class SimpleGoal : Goal
         return this._isComplete;
     }
 
-    protected override string GetStringDetails(){
+    public override string GetStringDetails(){
         if (IsCompleted())
         {
             return $"[X] {this._shortName} ({this._description})";
@@ -33,7 +33,7 @@ class SimpleGoal : Goal
         return $"[ ] {this._shortName} ({this._description})";
     }
 
-    protected override GoalData GetGoalData()
+    public override GoalData GetGoalData()
     {
         return new SimpleGoalData{
             goalType = "Simple",

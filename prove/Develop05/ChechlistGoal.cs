@@ -27,7 +27,7 @@ class ChechlistGoal : Goal
         return this._target == this._amountCompleted;
     }
 
-    protected override string GetStringDetails(){
+    public override string GetStringDetails(){
         if (IsCompleted())
         {
             return $"[X] {this._shortName} ({this._description}) -- Currently completed {this._accumulatedPoints}/{this._target}";
@@ -35,7 +35,7 @@ class ChechlistGoal : Goal
         return $"[ ] {this._shortName} ({this._description}) -- Currently completed {this._accumulatedPoints}/{this._target}";
     }
 
-    protected override GoalData GetGoalData()
+    public override GoalData GetGoalData()
     {
         return new ChecklistGoalData{
             goalType = "Checklist",

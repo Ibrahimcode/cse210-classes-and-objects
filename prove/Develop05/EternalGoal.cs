@@ -13,7 +13,7 @@ class EternalGoal : Goal
         // Console.WriteLine($"You now have {this._accumulatedPoints} points");
     }
 
-    protected override GoalData GetGoalData()
+    public override GoalData GetGoalData()
     {
         return new SimpleGoalData{
             goalType = "Eternal",

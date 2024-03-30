@@ -22,11 +22,11 @@ class Goal
         return false;
     }
 
-    protected virtual GoalData GetGoalData(){
+    public virtual GoalData GetGoalData(){
         return new GoalData();
     } 
 
-    protected virtual string GetStringDetails(){
+    public virtual string GetStringDetails(){
         return $"[ ] {this._shortName} ({this._description})";
     }
 }
