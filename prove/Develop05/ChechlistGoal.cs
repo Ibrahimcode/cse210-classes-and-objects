@@ -35,7 +35,7 @@ class ChechlistGoal : Goal
     protected override GoalData GetGoalData()
     {
         return new ChecklistGoalData{
-            goalType = "Simple",
+            goalType = "Checklist",
             shortName = _shortName,
             description = _description,
             pointsValue = _pointsValue,
