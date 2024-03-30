@@ -10,10 +10,14 @@ class SimpleGoal : Goal
 
     protected override void RecordEvent()
     {
-        this._accumulatedPoints += this._pointsValue;
-        this._isComplete = true;
-        Console.WriteLine($"Congratulations! you have earned {this._pointsValue} points");
-        Console.WriteLine($"You now have {this._accumulatedPoints} points");
+        if (!IsCompleted())
+        {
+            this._accumulatedPoints += this._pointsValue;
+            this._isComplete = true;
+            Console.WriteLine($"Congratulations! you have earned {this._pointsValue} points");
+            Console.WriteLine($"You now have {this._accumulatedPoints} points");
+        }
+        
     }
 
     protected override bool IsCompleted()
