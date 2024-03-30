@@ -25,4 +25,8 @@ class Goal
     protected virtual GoalData GetGoalData(){
         return new GoalData();
     } 
+
+    protected virtual string GetStringDetails(){
+        return $"[ ] {this._shortName} ({this._description})";
+    }
 }
