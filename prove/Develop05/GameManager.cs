@@ -13,6 +13,7 @@ class GameManager
 
     public void ListGoalNames(){
         int goalIndex = 1;
+        Console.WriteLine("The goals are:");
         foreach (Goal goal in this._goals)
         {
             Console.WriteLine($"{goalIndex}. {goal.GetGoalData().shortName}");
@@ -22,6 +23,7 @@ class GameManager
 
     public void ListGoalDetails(){
         int goalIndex = 1;
+        Console.WriteLine("The goals are:");
         foreach (Goal goal in this._goals)
         {
             Console.WriteLine($"{goalIndex}. {goal.GetStringDetails()}");
@@ -67,5 +69,24 @@ class GameManager
                 break;
         }
 
+    }
+
+    public void RecordEvent(){
+        this.ListGoalNames();
+        Console.Write("Which goal did you accomplished? ");
+        int goalToRecord = int.Parse(Console.ReadLine());
+        Console.WriteLine();
+        if (goalToRecord - 1  <= this._goals.Count)
+        {
+            int goalIndex = goalToRecord - 1;
+            this._goals[goalIndex].RecordEvent();
+            GoalData goalData = this._goals[goalIndex].GetGoalData();
+
+            this._score += goalData.pointsValue;
+
+            Console.WriteLine($"Congratulations! you have earned {goalData.pointsValue} points");
+            this.DisplayPlayerInfo();
+
+        }
     }
 }

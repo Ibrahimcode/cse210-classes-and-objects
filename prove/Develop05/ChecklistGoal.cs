@@ -11,14 +11,12 @@ class ChecklistGoal : Goal
         this._bonus = bonus;
     }
 
-    protected override void RecordEvent()
+    public override void RecordEvent()
     {
         if (!IsCompleted())
         {
             this._accumulatedPoints += this._pointsValue;
             this._amountCompleted += 1;
-            Console.WriteLine($"Congratulations! you have earned {this._pointsValue} points");
-            Console.WriteLine($"You now have {this._accumulatedPoints} points");
         }
     }
 

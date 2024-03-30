@@ -14,7 +14,7 @@ class Goal
         this._pointsValue = pointsValue;
     }
 
-    protected virtual void RecordEvent(){
+    public virtual void RecordEvent(){
         return;
     }
 

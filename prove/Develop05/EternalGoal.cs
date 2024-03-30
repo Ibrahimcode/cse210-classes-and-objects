@@ -6,11 +6,9 @@ class EternalGoal : Goal
 
     }
 
-    protected override void RecordEvent()
+    public override void RecordEvent()
     {
         this._accumulatedPoints += this._pointsValue;
-        Console.WriteLine($"Congratulations! you have earned {this._pointsValue} points");
-        // Console.WriteLine($"You now have {this._accumulatedPoints} points");
     }
 
     public override GoalData GetGoalData()
