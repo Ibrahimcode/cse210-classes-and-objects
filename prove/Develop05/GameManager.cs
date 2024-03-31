@@ -1,3 +1,6 @@
+using System.Net;
+using System.Text.Json;
+
 class GameManager
 {
     public List<Goal> _goals;
@@ -31,6 +34,12 @@ class GameManager
                     break;
                 case "2":
                     this.ListGoalDetails();
+                    break;
+                case "3":
+                    this.SaveGoals();
+                    break;
+                case "4":
+                    this.LoadGoals();
                     break;
                 case "5":
                     this.RecordEvent();
@@ -128,13 +137,68 @@ class GameManager
             // Check to add bonus for Checklist goal.
             if (goalData.goalType == "Checklist" && this._goals[goalIndex].IsCompleted())
             {
-                ChecklistGoalData checklistGoalData = (ChecklistGoalData)goalData;
-                this._score += checklistGoalData.bonus;
+                // ChecklistGoalData checklistGoalData = (ChecklistGoalData)goalData;
+                // this._score += checklistGoalData.bonus;
+                this._score += goalData.bonus;
             }
 
             Console.WriteLine($"Congratulations! you have earned {goalData.pointsValue} points!");
             this.DisplayPlayerInfo();
 
+        }
+    }
+
+    public void SaveGoals(){
+        List<GoalData> goalDatum = new List<GoalData>();
+
+        foreach (Goal goal in this._goals)
+        {
+            goalDatum.Add(goal.GetGoalData());
+        }
+
+        Console.Write("What is the filename of the goal? ");
+        string goalFileName = Console.ReadLine();
+        
+        using (StreamWriter goalFile = new StreamWriter(goalFileName))
+        {
+            string goalJsonString = JsonSerializer.Serialize(goalDatum);
+            goalFile.WriteAsync(goalJsonString);
+        }
+    }
+
+    public void LoadGoals(){
+        List<GoalData> goalDatum = new List<GoalData>();
+
+        Console.Write("What is the filename of the goal? ");
+        string goalFileName = Console.ReadLine();
+        
+        using (StreamReader goalFile = new StreamReader(goalFileName))
+        {
+            string goalJsonString = goalFile.ReadToEnd();
+            goalDatum = JsonSerializer.Deserialize<List<GoalData>>(goalJsonString);
+        }
+
+        // Create goals from the goal data and add them
+        // to the list of _goal
+        foreach (GoalData goalData in goalDatum)
+        {
+            this._score += goalData.accumulatedPoints;
+            string goalType = goalData.goalType;
+            switch (goalType)
+            {
+                case "Simple":
+                    this._goals.Add(new SimpleGoal(goalData.shortName, goalData.description, goalData.pointsValue, goalData.accumulatedPoints));
+                    break;
+                case "Eternal":
+                    this._goals.Add(new EternalGoal(goalData.shortName, goalData.description, goalData.pointsValue, goalData.accumulatedPoints));
+                    break;
+                case "Checklist":
+                    // ChecklistGoalData checklistGoalData = (ChecklistGoalData)goalData;
+                    this._goals.Add(new ChecklistGoal(goalData.shortName, goalData.description, goalData.pointsValue, goalData.target, goalData.bonus, goalData.amountCompleted, goalData.accumulatedPoints));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

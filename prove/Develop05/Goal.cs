@@ -8,10 +8,11 @@ class Goal
     protected int _pointsValue;
     protected int _accumulatedPoints;
 
-    public Goal(string shortName, string description, int pointsValue=0){
+    public Goal(string shortName, string description, int pointsValue=0, int accumulatedPoints=0){
         this._shortName = shortName;
         this._description = description;
         this._pointsValue = pointsValue;
+        this._accumulatedPoints = accumulatedPoints;
     }
 
     public virtual void RecordEvent(){

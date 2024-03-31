@@ -5,10 +5,11 @@ class ChecklistGoal : Goal
     protected int _bonus;
 
     public ChecklistGoal(
-        string shortName, string description, int pointsValue, int target, int bonus
-    ) : base(shortName, description, pointsValue){
+        string shortName, string description, int pointsValue, int target, int bonus, int amountCompleted=0, int accumulatedPoints=0
+    ) : base(shortName, description, pointsValue, accumulatedPoints){
         this._target = target;
         this._bonus = bonus;
+        this._amountCompleted = amountCompleted;
     }
 
     public override void RecordEvent()
@@ -35,7 +36,7 @@ class ChecklistGoal : Goal
 
     public override GoalData GetGoalData()
     {
-        return new ChecklistGoalData{
+        return new GoalData{
             goalType = "Checklist",
             shortName = _shortName,
             description = _description,

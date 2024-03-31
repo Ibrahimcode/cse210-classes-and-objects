@@ -3,8 +3,8 @@ class SimpleGoal : Goal
     private bool _isComplete;
     
     public SimpleGoal(
-        string shortName, string description, int pointsValue
-        ) : base(shortName, description, pointsValue){
+        string shortName, string description, int pointsValue, int accumulatedPoints=0
+        ) : base(shortName, description, pointsValue, accumulatedPoints){
         this._isComplete = false;
     }
 
@@ -33,7 +33,7 @@ class SimpleGoal : Goal
 
     public override GoalData GetGoalData()
     {
-        return new SimpleGoalData{
+        return new GoalData{
             goalType = "Simple",
             shortName = _shortName,
             description = _description,

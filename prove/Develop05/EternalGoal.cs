@@ -1,8 +1,8 @@
 class EternalGoal : Goal
 {
     public EternalGoal(
-        string shortName, string description, int pointsValue
-    ) : base(shortName, description, pointsValue){
+        string shortName, string description, int pointsValue, int accumulatedPoints=0
+    ) : base(shortName, description, pointsValue, accumulatedPoints){
 
     }
 
@@ -13,7 +13,7 @@ class EternalGoal : Goal
 
     public override GoalData GetGoalData()
     {
-        return new SimpleGoalData{
+        return new GoalData{
             goalType = "Eternal",
             shortName = _shortName,
             description = _description,
