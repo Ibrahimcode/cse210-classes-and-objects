@@ -6,5 +6,8 @@ class Program
     {
         GameManager gameManager = new GameManager();
         gameManager.Start();
+
+        // Exceeding Requirement:
+        // I serialize goal objects and save it as json file.
     }
 }
