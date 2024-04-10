@@ -14,8 +14,16 @@ class WellnessActivity
         this._completed = completed;
     }
 
-    protected virtual void DisplayActivityGoal(){
+    public virtual void DisplayActivityGoal(){
         Console.WriteLine(this.buildActivityString());
+    }
+
+    public virtual bool CheckCompletion(){
+        return this._completed;
+    }
+
+    public string GetName(){
+        return this._name;
     }
 
     protected virtual string buildActivityString(){
