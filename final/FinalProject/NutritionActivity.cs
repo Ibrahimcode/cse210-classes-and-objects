@@ -10,6 +10,6 @@ class NutritionActivity : WellnessActivity
     }
 
     protected override string buildActivityString(){
-        return "";
+        return $"Your Nutrition goal is {this._name}. You also wants to consume these nutrients: {this._foodNutrients.ToString()} for {this._duration}";
     }
 }

@@ -9,6 +9,6 @@ class SleepAndRelaxationActivity : WellnessActivity
     }
 
     protected override string buildActivityString(){
-        return "";
+        return $"Your Sleep and Relaxation goal is: {this._name.ToUpper()} for {this._duration}";
     }
 }

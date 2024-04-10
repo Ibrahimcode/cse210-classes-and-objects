@@ -12,6 +12,6 @@ class PhysicalActivity : WellnessActivity
     }
 
     protected override string buildActivityString(){
-        return "";
+        return $"You set a goal to do {this._intensity} {this._name} exercise for {this._duration},\n and you need these equipments to perform your physical exercise {this._equipments.ToString()}";
     }
 }

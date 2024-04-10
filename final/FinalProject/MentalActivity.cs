@@ -9,6 +9,6 @@ class MentalActivity : WellnessActivity
     }
 
     protected override string buildActivityString(){
-        return "";
+        return $"To optimizee your mental health, you set a goal to practice {this._name} for {this._duration}";
     }
 }
