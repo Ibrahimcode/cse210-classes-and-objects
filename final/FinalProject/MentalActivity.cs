@@ -2,10 +2,10 @@ class MentalActivity : WellnessActivity
 {
     protected string _focusArea;
     public MentalActivity(
-        string name, string description, string duration, bool completed, string focusArea)
+        string name, string description, string duration, bool completed)
     : base (name, description, duration, completed)
     {
-        this._focusArea = focusArea;
+        
     }
 
     protected override string buildActivityString(){
